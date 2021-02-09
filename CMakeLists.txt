@@ -1,10 +1,11 @@
 # Basic parameters; check that these match your project / environment
 cmake_minimum_required(VERSION 3.8)
 
-project(game)
+project(blitroids)
 set(32BLIT_PATH "../" CACHE PATH "Path to 32blit.cmake")
-set(PROJECT_SOURCE game.cpp game.hpp)
 set(PROJECT_DISTRIBS LICENSE README.md)
+
+set(PROJECT_SOURCE blitroids.cpp)
 
 # Build configuration; approach this with caution!
 if(MSVC)

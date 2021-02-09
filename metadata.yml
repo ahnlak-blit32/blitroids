@@ -1,9 +1,10 @@
-title: game title
-description: game description
-author: you
+title: Blitroids
+description: An Asteroids inspired arcade blast-em-up
+author: ahnlak
+category: game
+url: https://github.com/ahnlak-blit32/blitroids
 splash:
-  file: assets/no-image.png
+  file: assets/blitroids-splash.png
 icon:
-  file: assets/no-icon.png
+  file: assets/blitroids-icon.png
 version: v0.0.1
-

@@ -1,24 +1,17 @@
-# 32Blit Boilerplate
+# Blitroids
 
-![Build](https://github.com/32blit/32blit-boilerplate/workflows/Build/badge.svg)
+![Build](https://github.com/ahnlak-blit32/blitroids/workflows/Build/badge.svg)
 
-This is a basic template for starting 32blit projects. It shows the basic
-code layout and asset pipeline, hopefully giving folk a starting point for
-any new projects.
+**Blitroids** is an Asteroids-inspired arcade game developed for the 32Blit
+console, although thanks to the excellent 32Blit pipeline it will also be available
+for Windows, Linux, MacOS and Web!
 
-It's based on the original `template` project from the 
-[32Blit Beta](https://github.com/pimoroni/32blit-beta), with added asset
-handling, and some tidying up to fit in with how I do things.
+The aim is simple enough; survive and destroy all the asteroids (and other things!)
+that would like to see you atomised and scattered through space in tiny pieces.
 
-## Usage
 
-[Use this template](https://github.com/32blit/32blit-boilerplate/generate) to
-generate your own project.
+This game is distributed under the MIT License, in the hope that the source may
+prove educational to anyone else interested in developing for the 32Blit. Please
+only take the good stuff, and do not acquire any of my bad habits :-)
 
-* Edit the CMakeList.txt file to set the name of your project
-* Edit the metadata.yml file to set the information for your project
-* Edit the LICENSE file to set your name on the license
-* Write lots of super cool code!
-
-You should then be able to follow the usual build instructions.
-
+Share and Enjoy!
