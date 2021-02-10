@@ -17,13 +17,17 @@
 
 #include "32blit.hpp"
 #include "blitroids.hpp"
+#include "AssetManager.hpp"
+#include "OutputManager.hpp"
+#include "SplashState.hpp"
 
 
 /* Module variables. */
 
 static gamestate_t          m_state;
 static GameStateInterface  *m_states[STATE_MAX];
-
+static AssetManager        *m_asset_manager;
+static OutputManager       *m_output_manager;
 
 /* Functions. */
 
@@ -47,7 +51,7 @@ bool blitroids_state_init( gamestate_t p_last_state )
   }
 
   /* Then we can just call the init function! */
-  m_states[m_state]->init( m_states[p_last_state] );
+  m_states[m_state]->init( m_states[p_last_state], m_asset_manager, m_output_manager );
 
   /* Return true to say we were able to do it. */
   return true;
@@ -99,8 +103,12 @@ void init( void )
     m_states[l_state_idx] = nullptr;
   }
 
-  /* And create all the individual state handlers. */
+  /* Create our Managers, which will interface with assets and outputs. */
+  m_asset_manager = new AssetManager();
+  m_output_manager = new OutputManager();
 
+  /* And create all the individual state handlers. */
+  m_states[STATE_SPLASH] = new SplashState( STATE_SPLASH );
 
   /* Lastly, set our opening state to the splash. */
   m_state = STATE_SPLASH;
@@ -189,4 +197,4 @@ void render( uint32_t p_time )
 }
 
 
-/* End of file blitroids.cpp. */
+/* End of file blitroids.cpp */

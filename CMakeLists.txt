@@ -5,7 +5,9 @@ project(blitroids)
 set(32BLIT_PATH "../" CACHE PATH "Path to 32blit.cmake")
 set(PROJECT_DISTRIBS LICENSE README.md)
 
-set(PROJECT_SOURCE blitroids.cpp)
+set(PROJECT_SOURCE blitroids.cpp
+                   AssetManager.cpp OutputManager.cpp
+                   SplashState.cpp)
 
 # Build configuration; approach this with caution!
 if(MSVC)
