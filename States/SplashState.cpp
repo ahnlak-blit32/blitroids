@@ -37,6 +37,10 @@ SplashState::SplashState( gamestate_t p_state )
   /* Remember the state identifier we're given. */
   c_state = p_state;
 
+  /* Set up the font colour stuff. */
+  c_font_pen = blit::Pen( 200, 200, 200 );
+  c_font_tween.init( blit::tween_ease_in_out_quad, 200.0f, 50.0f, 750 );
+
   /* All done. */
   return;
 }
@@ -63,6 +67,9 @@ SplashState::~SplashState()
 
 gamestate_t SplashState::update( uint32_t p_time )
 {
+  /* Update the font pen from its tween. */
+  c_font_pen.r = c_font_pen.g = c_font_tween.value;
+
   /* All done, keep with what we're doing. */
   return c_state;
 }
@@ -77,14 +84,14 @@ gamestate_t SplashState::update( uint32_t p_time )
 void SplashState::render( uint32_t p_time )
 {
   /* Clear the screen. */
-  blit::screen.pen = blit::Pen( 20, 20, 20 );
+  blit::screen.pen = blit::Pen( 60, 20, 20 );
   blit::screen.clear();
 
-  blit::screen.pen = blit::Pen( 200, 200, 200 );
+  blit::screen.pen = c_font_pen;
   blit::screen.text(
-    "Press 'A' To Start",
+    "Press <A> To Start",
     c_asset_manager->font_null,
-    blit::Point( blit::screen.bounds.w / 2, blit::screen.bounds.h - 45 ),
+    blit::Point( blit::screen.bounds.w / 2, blit::screen.bounds.h - 25 ),
     true,
     blit::TextAlign::center_center
   );  
@@ -110,6 +117,9 @@ void SplashState::init( GameStateInterface *p_previous_state,
   c_asset_manager = p_asset_manager;
   c_output_manager = p_output_manager;
 
+  /* Start the tweens running. */
+  c_font_tween.start();
+
   /* All done. */
   return;
 }
@@ -123,6 +133,9 @@ void SplashState::init( GameStateInterface *p_previous_state,
 
 void SplashState::fini( GameStateInterface *p_next_state )
 {
+  /* Stop the tweens running. */
+  c_font_tween.stop();
+
   /* All done. */
   return;
 }

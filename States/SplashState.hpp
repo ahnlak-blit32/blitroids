@@ -12,6 +12,7 @@
 #ifndef   _SPLASHSTATE_HPP_
 #define   _SPLASHSTATE_HPP_
 
+#include "32blit.hpp"
 #include "AssetManager.hpp"
 #include "OutputManager.hpp"
 
@@ -29,6 +30,8 @@ class SplashState : public GameStateInterface
 private:
   AssetManager   *c_asset_manager;
   OutputManager  *c_output_manager;
+  blit::Pen       c_font_pen;
+  blit::Tween     c_font_tween;
   
 public:
                   SplashState( gamestate_t );
