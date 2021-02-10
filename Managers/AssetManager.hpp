@@ -13,6 +13,9 @@
 #ifndef   _ASSETMANAGER_HPP_
 #define   _ASSETMANAGER_HPP_
 
+#include "AssetsFonts.hpp"
+
+
 /* Constants & Macros. */
 
 /* Enums. */
@@ -24,9 +27,12 @@
 class AssetManager
 {
 private:
+
 public:
-                  AssetManager( void );
-                 ~AssetManager();
+                    AssetManager( void );
+                   ~AssetManager();
+
+  const blit::Font  font_null = blit::Font( a_font_null16 );
 
 };
 

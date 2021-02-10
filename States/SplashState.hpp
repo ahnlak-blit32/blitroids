@@ -12,6 +12,10 @@
 #ifndef   _SPLASHSTATE_HPP_
 #define   _SPLASHSTATE_HPP_
 
+#include "AssetManager.hpp"
+#include "OutputManager.hpp"
+
+
 /* Constants & Macros. */
 
 /* Enums. */
@@ -23,6 +27,9 @@
 class SplashState : public GameStateInterface
 {
 private:
+  AssetManager   *c_asset_manager;
+  OutputManager  *c_output_manager;
+  
 public:
                   SplashState( gamestate_t );
                  ~SplashState();

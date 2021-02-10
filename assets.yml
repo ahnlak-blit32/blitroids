@@ -1,8 +1,17 @@
-# All these assets will be created in assets.cpp, which CMake will
-# link automagically.
-# References can be picked up by including assets.hpp
+# assets.yml - part of Blitroids, a 32Blit game.
+#
+# This file defines the images, fonts and sounds used by the game, along with
+# rules to turn it into code linked into the final executable.
+#
+# Copyright (C) 2021 Pete Favelle <pete@fsquared.co.uk>
+#
+# This file is released under the MIT License; see LICENSE for more details.
 
-assets.cpp:
-  assets/no-image.png:
-    name: asset_no_image
+AssetsFonts.hpp:
 
+  prefix: a_font_
+
+  assets/null-font-16x16.png:
+    type: font/image
+    name: null16
+    space_width: 8

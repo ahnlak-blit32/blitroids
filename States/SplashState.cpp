@@ -76,6 +76,19 @@ gamestate_t SplashState::update( uint32_t p_time )
 
 void SplashState::render( uint32_t p_time )
 {
+  /* Clear the screen. */
+  blit::screen.pen = blit::Pen( 20, 20, 20 );
+  blit::screen.clear();
+
+  blit::screen.pen = blit::Pen( 200, 200, 200 );
+  blit::screen.text(
+    "Press 'A' To Start",
+    c_asset_manager->font_null,
+    blit::Point( blit::screen.bounds.w / 2, blit::screen.bounds.h - 45 ),
+    true,
+    blit::TextAlign::center_center
+  );  
+
   /* All done. */
   return;
 }
@@ -90,8 +103,13 @@ void SplashState::render( uint32_t p_time )
  */
 
 void SplashState::init( GameStateInterface *p_previous_state, 
-           AssetManager *p_asset_manager, OutputManager *p_output_manager )
+                        AssetManager *p_asset_manager, 
+                        OutputManager *p_output_manager )
 {
+  /* Keep hold of the pointers to our managers. */
+  c_asset_manager = p_asset_manager;
+  c_output_manager = p_output_manager;
+
   /* All done. */
   return;
 }
