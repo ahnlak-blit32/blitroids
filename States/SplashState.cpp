@@ -29,10 +29,10 @@
 /*
  * SplashState - constructor for the state, which just sets up basic defaults. 
  *
- * gamestate_t, the state identifier that we represent.
+ * state_t, the state identifier that we represent.
  */
 
-SplashState::SplashState( gamestate_t p_state )
+SplashState::SplashState( state_t p_state )
 {
   /* Remember the state identifier we're given. */
   c_state = p_state;
@@ -62,10 +62,10 @@ SplashState::~SplashState()
  *
  * uint32_t - the time in milliseconds since the epoch.
  *
- * Returns gamestate_t, the game state we should move to, defaulting to ourselves.
+ * Returns state_t, the game state we should move to, defaulting to ourselves.
  */
 
-gamestate_t SplashState::update( uint32_t p_time )
+state_t SplashState::update( uint32_t p_time )
 {
   /* Update the font pen from its tween. */
   c_font_pen.r = c_font_pen.g = c_font_tween.value;
@@ -104,12 +104,12 @@ void SplashState::render( uint32_t p_time )
 /*
  * init - called any time the state is activated, or woken up.
  *
- * GameStateInterface *, the game state that we are coming from
- * AssetManager *      , the asset manager object
- * OutputManager *     , the output manager
+ * StateInterface *, the game state that we are coming from
+ * AssetManager *  , the asset manager object
+ * OutputManager * , the output manager
  */
 
-void SplashState::init( GameStateInterface *p_previous_state, 
+void SplashState::init( StateInterface *p_previous_state, 
                         AssetManager *p_asset_manager, 
                         OutputManager *p_output_manager )
 {
@@ -128,10 +128,10 @@ void SplashState::init( GameStateInterface *p_previous_state,
 /*
  * fini - called any time the state is being de-activated
  *
- * GameStateInterface *, the game state we are moving to
+ * StateInterface *, the game state we are moving to
  */
 
-void SplashState::fini( GameStateInterface *p_next_state )
+void SplashState::fini( StateInterface *p_next_state )
 {
   /* Stop the tweens running. */
   c_font_tween.stop();

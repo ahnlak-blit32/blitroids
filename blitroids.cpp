@@ -17,15 +17,18 @@
 
 #include "32blit.hpp"
 #include "blitroids.hpp"
+
 #include "AssetManager.hpp"
 #include "OutputManager.hpp"
+
+#include "StateInterface.hpp"
 #include "SplashState.hpp"
 
 
 /* Module variables. */
 
-static gamestate_t          m_state;
-static GameStateInterface  *m_states[STATE_MAX];
+static state_t              m_state;
+static StateInterface      *m_states[STATE_MAX];
 static AssetManager        *m_asset_manager;
 static OutputManager       *m_output_manager;
 
@@ -34,12 +37,12 @@ static OutputManager       *m_output_manager;
 /*
  * state_init - calls the init function of the current state, if we can.
  *
- * gamestate_t - the previous state we were in.
+ * state_t - the previous state we were in.
  *
  * Returns true if the init function was called, false on error.
  */
 
-bool blitroids_state_init( gamestate_t p_last_state )
+bool blitroids_state_init( state_t p_last_state )
 {
   /* Debug trace of state switching. */
   debug_printf( "Switching states from %d to %d\n", p_last_state, m_state );
@@ -61,12 +64,12 @@ bool blitroids_state_init( gamestate_t p_last_state )
 /*
  * state_fini - calls the fini function of the current state, if we can.
  *
- * gamestate_t - the next state we will be in.
+ * state_t - the next state we will be in.
  *
  * Returns true if the fini function was called, false on error.
  */
 
-bool blitroids_state_fini( gamestate_t p_next_state )
+bool blitroids_state_fini( state_t p_next_state )
 {
   /* Check to see if the current state if defined. */
   if ( nullptr == m_states[m_state] )
@@ -128,7 +131,7 @@ void init( void )
 
 void update( uint32_t p_time )
 {
-  gamestate_t l_previous_state, l_next_state;
+  state_t l_previous_state, l_next_state;
 
   /*
    * We'll check the main menu key outside of the normal state engine; if we're

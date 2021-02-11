@@ -13,8 +13,7 @@
 #define   _SPLASHSTATE_HPP_
 
 #include "32blit.hpp"
-#include "AssetManager.hpp"
-#include "OutputManager.hpp"
+#include "StateInterface.hpp"
 
 
 /* Constants & Macros. */
@@ -25,7 +24,7 @@
 
 /* Classes. */
 
-class SplashState : public GameStateInterface
+class SplashState : public StateInterface
 {
 private:
   AssetManager   *c_asset_manager;
@@ -34,13 +33,13 @@ private:
   blit::Tween     c_font_tween;
   
 public:
-                  SplashState( gamestate_t );
+                  SplashState( state_t );
                  ~SplashState();
 
-  gamestate_t     update( uint32_t );
+  state_t         update( uint32_t );
   void            render( uint32_t );
-  void            init( GameStateInterface *, AssetManager *, OutputManager * );
-  void            fini( GameStateInterface * );
+  void            init( StateInterface *, AssetManager *, OutputManager * );
+  void            fini( StateInterface * );
 
 };
 
