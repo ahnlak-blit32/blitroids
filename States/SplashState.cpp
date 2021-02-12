@@ -41,6 +41,9 @@ SplashState::SplashState( state_t p_state )
   c_font_pen = blit::Pen( 200, 200, 200 );
   c_font_tween.init( blit::tween_ease_in_out_quad, 200.0f, 50.0f, 750 );
 
+  /* Create the background we'll be using. */
+  c_background = new StarburstBackground();
+
   /* All done. */
   return;
 }
@@ -52,6 +55,13 @@ SplashState::SplashState( state_t p_state )
 
 SplashState::~SplashState()
 {
+  /* Get rid of the background object. */
+  if ( nullptr != c_background )
+  {
+    delete c_background;
+    c_background = nullptr;
+  }
+
   /* All done. */
   return;
 }
@@ -67,6 +77,9 @@ SplashState::~SplashState()
 
 state_t SplashState::update( uint32_t p_time )
 {
+  /* Update the background. */
+  c_background->update( p_time );
+
   /* Update the font pen from its tween. */
   c_font_pen.r = c_font_pen.g = c_font_tween.value;
 
@@ -83,10 +96,10 @@ state_t SplashState::update( uint32_t p_time )
 
 void SplashState::render( uint32_t p_time )
 {
-  /* Clear the screen. */
-  blit::screen.pen = blit::Pen( 60, 20, 20 );
-  blit::screen.clear();
+  /* Draw the background. */
+  c_background->render( p_time );
 
+  /* Prompt the user to press start. */
   blit::screen.pen = c_font_pen;
   blit::screen.text(
     "Press <A> To Start",
@@ -120,6 +133,9 @@ void SplashState::init( StateInterface *p_previous_state,
   /* Start the tweens running. */
   c_font_tween.start();
 
+  /* And initialise the background. */
+  c_background->init();
+
   /* All done. */
   return;
 }
@@ -135,6 +151,9 @@ void SplashState::fini( StateInterface *p_next_state )
 {
   /* Stop the tweens running. */
   c_font_tween.stop();
+
+  /* And shut down the background. */
+  c_background->fini();
 
   /* All done. */
   return;

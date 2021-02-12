@@ -6,9 +6,10 @@ project(blitroids)
 set(PROJECT_DISTRIBS LICENSE README.md)
 set(PROJECT_SOURCE blitroids.cpp
                    Managers/AssetManager.cpp Managers/OutputManager.cpp
+                   Backgrounds/StarburstBackground.cpp
                    States/SplashState.cpp)
 
-include_directories(Managers States .)
+include_directories(Backgrounds Managers States .)
 
 # Build configuration; approach this with caution!
 if(MSVC)

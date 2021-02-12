@@ -32,6 +32,7 @@ static StateInterface      *m_states[STATE_MAX];
 static AssetManager        *m_asset_manager;
 static OutputManager       *m_output_manager;
 
+
 /* Functions. */
 
 /*

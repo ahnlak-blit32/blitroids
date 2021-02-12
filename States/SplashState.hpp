@@ -14,6 +14,7 @@
 
 #include "32blit.hpp"
 #include "StateInterface.hpp"
+#include "StarburstBackground.hpp"
 
 
 /* Constants & Macros. */
@@ -27,19 +28,20 @@
 class SplashState : public StateInterface
 {
 private:
-  AssetManager   *c_asset_manager;
-  OutputManager  *c_output_manager;
-  blit::Pen       c_font_pen;
-  blit::Tween     c_font_tween;
+  StarburstBackground  *c_background;
+  AssetManager         *c_asset_manager;
+  OutputManager        *c_output_manager;
+  blit::Pen             c_font_pen;
+  blit::Tween           c_font_tween;
   
 public:
-                  SplashState( state_t );
-                 ~SplashState();
+                        SplashState( state_t );
+                       ~SplashState();
 
-  state_t         update( uint32_t );
-  void            render( uint32_t );
-  void            init( StateInterface *, AssetManager *, OutputManager * );
-  void            fini( StateInterface * );
+  state_t             update( uint32_t );
+  void                render( uint32_t );
+  void                init( StateInterface *, AssetManager *, OutputManager * );
+  void                fini( StateInterface * );
 
 };
 
