@@ -82,11 +82,10 @@ void StarburstBackground::set_origin( blit::Point p_origin )
 void StarburstBackground::set_density( uint16_t p_density )
 {
   uint16_t  l_index;
-  _star_t  *l_new_array;
 
   /* We'll just (re) allocate the star array for this to start. */
-  l_new_array = (_star_t *)reallocarray( c_stars, p_density, sizeof( _star_t ) );
-  if ( nullptr == l_new_array )
+  c_stars = (_star_t *)realloc( c_stars, p_density * sizeof( _star_t ) );
+  if ( nullptr == c_stars )
   {
     /* Memory allocation has failed, we can't proceed. */
     return;
@@ -95,11 +94,10 @@ void StarburstBackground::set_density( uint16_t p_density )
   /* Any new stars, need zeroing. */
   for( l_index = c_density; l_index < p_density; l_index++ )
   {
-    l_new_array[l_index].visible = false;
+    c_stars[l_index].visible = false;
   }
 
-  /* Lastly, save the new array and density. */
-  c_stars = l_new_array;
+  /* Lastly, save the new density. */
   c_density = p_density;
 }
 
