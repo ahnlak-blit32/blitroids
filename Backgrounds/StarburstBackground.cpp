@@ -27,14 +27,14 @@
  * StarburstBackground - constructor for the background, setting defaults.
  */
 
-StarburstBackground::StarburstBackground( void )
+StarburstBackground::StarburstBackground( uint8_t p_velocity, uint16_t p_density )
 {
   /* Default to the origin being the center of the screen. */
   set_origin( blit::screen.clip.center() );
 
   /* And a sensible density and velocity for the star field. */
-  set_density( 200 );
-  c_velocity = 5;
+  c_velocity = p_velocity;
+  set_density( p_density, true );
 
   /* All done. */
   return;
@@ -47,6 +47,13 @@ StarburstBackground::StarburstBackground( void )
 
 StarburstBackground::~StarburstBackground()
 {
+  /* If we have any stars allocated, delete them. */
+  if ( nullptr != c_stars )
+  {
+    free( c_stars );
+    c_stars = nullptr;
+  }
+
   /* All done. */
   return;
 }
@@ -79,7 +86,7 @@ void StarburstBackground::set_origin( blit::Point p_origin )
  * uint16_t - the new star density
  */
 
-void StarburstBackground::set_density( uint16_t p_density )
+void StarburstBackground::set_density( uint16_t p_density, bool p_preload )
 {
   uint16_t  l_index;
 
@@ -97,8 +104,18 @@ void StarburstBackground::set_density( uint16_t p_density )
     c_stars[l_index].visible = false;
   }
 
-  /* Lastly, save the new density. */
+  /* Save the new density. */
   c_density = p_density;
+
+  /* And if we've been asked to pre-load, run <density> updates to pre-fill */
+  /* the starfield and avoid the awkward opening blankness.                 */
+  if ( p_preload )
+  {
+    for( l_index = 0; l_index < p_density; l_index++ )
+    {
+      update(0);
+    }
+  }
 }
 
 
@@ -135,7 +152,7 @@ void StarburstBackground::update( uint32_t p_time )
       c_stars[l_index].vector = blit::Vec2( 0, c_velocity / 10.0f );
 
       /* And rotate it a random amount. */
-      c_stars[l_index].vector.rotate( ( blit::random() % 360 ) * M_PI / 180.0f );
+      c_stars[l_index].vector.rotate( ( blit::random() % 360 ) * MY_PI / 180.0f );
 
       /* Lastly, keep track of new stars we've made. */
       l_new_stars--;

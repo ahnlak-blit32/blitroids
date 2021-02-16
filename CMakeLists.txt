@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.8)
 project(blitroids)
 
 set(PROJECT_DISTRIBS LICENSE README.md)
-set(PROJECT_SOURCE blitroids.cpp
+set(PROJECT_SOURCE blitroids.cpp blitstrings.cpp
                    Managers/AssetManager.cpp Managers/OutputManager.cpp
                    Backgrounds/StarburstBackground.cpp
                    States/SplashState.cpp)
@@ -15,7 +15,7 @@ include_directories(Backgrounds Managers States .)
 if(MSVC)
   add_compile_options("/W4" "/wd4244" "/wd4324")
 else()
-  add_compile_options("-Wall" "-Wextra" "-Wdouble-promotion")
+  add_compile_options("-Wall" "-Wextra" "-Wdouble-promotion" "-Wno-unused-parameter")
 endif()
 
 find_package(32BLIT CONFIG REQUIRED PATHS ../ /opt)

@@ -15,3 +15,15 @@ AssetsFonts.hpp:
     type: font/image
     name: null16
     space_width: 8
+
+AssetsImages.hpp:
+
+  prefix: a_img_
+
+  assets/blitroids-logo.png:
+    name: logo
+    packed: false
+
+  assets/blitroids-sprites.png:
+    name: spritesheet
+    packed: false

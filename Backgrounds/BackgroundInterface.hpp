@@ -18,6 +18,7 @@
 class BackgroundInterface
 {
 public:
+  virtual        ~BackgroundInterface() {};
   virtual void    update( uint32_t ) = 0;
   virtual void    render( uint32_t ) = 0;
   virtual void    init( void ) = 0;

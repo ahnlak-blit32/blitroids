@@ -99,10 +99,20 @@ void SplashState::render( uint32_t p_time )
   /* Draw the background. */
   c_background->render( p_time );
 
+  /* Plonk the logo somewhere central. */
+  blit::screen.blit( 
+    c_asset_manager->c_img_logo, 
+    c_asset_manager->c_img_logo->clip,
+    blit::Point( 
+      ( blit::screen.bounds.w - c_asset_manager->c_img_logo->bounds.w ) / 2,
+      ( blit::screen.bounds.h - c_asset_manager->c_img_logo->bounds.h ) / 2 - 20
+    )
+  );
+
   /* Prompt the user to press start. */
   blit::screen.pen = c_font_pen;
   blit::screen.text(
-    "Press <A> To Start",
+    c_asset_manager->get_string( STR_BTN_A_TO_START ),
     c_asset_manager->font_null,
     blit::Point( blit::screen.bounds.w / 2, blit::screen.bounds.h - 25 ),
     true,

@@ -20,9 +20,8 @@
 
 /* Constants & Macros. */
 
-#ifndef   M_PI
-#define   M_PI    3.141592653
-#endif /* M_PI */
+#define   MY_PI    3.141592653f
+
 
 /* Enums. */
 
@@ -50,11 +49,11 @@ private:
   blit::Point     c_br_distance;
   
 public:
-                  StarburstBackground( void );
+                  StarburstBackground( uint8_t p_velocity = 5, uint16_t p_density = 200 );
                  ~StarburstBackground();
 
   void            set_origin( blit::Point );
-  void            set_density( uint16_t );
+  void            set_density( uint16_t, bool p_preload = false );
 
   void            update( uint32_t );
   void            render( uint32_t );
